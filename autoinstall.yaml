@@ -1,0 +1,70 @@
+#cloud-config
+autoinstall:
+  version: 1
+  
+  # Enable interactive sections for username, password, and hostname
+  interactive-sections:
+    - identity
+    - hostname
+
+  # Localization settings
+  locale: en_US.UTF-8
+  keyboard:
+    layout: ch
+    variant: de_nodeadkeys
+
+  # Network configuration with DHCP for all Ethernet interfaces
+  network:
+    network:
+      version: 2
+      ethernets:
+        any-ethernet:
+          match:
+            name: en*
+          dhcp4: true
+          dhcp6: true
+
+  # Storage configuration using a single partition
+  storage:
+    layout:
+      name: direct
+    config:
+      - type: disk
+        id: disk-0
+        match:
+          size: largest
+      - type: partition
+        id: root-partition
+        device: disk-0
+        size: -1  # Use all available space
+        wipe: superblock
+      - type: format
+        id: root-format
+        volume: root-partition
+        fstype: ext4
+      - type: mount
+        id: root-mount
+        device: root-format
+        path: /
+
+  # Package configuration
+  packages:
+    - openssh-server
+
+  # User configuration (will be set interactively)
+  identity:
+    username: ubuntu
+    hostname: ubuntu-server
+    password: "$6$exampleSalt$CmSv0e9RUFmfeE..." # This placeholder will be replaced during interactive setup
+
+  # SSH setup
+  ssh:
+    install-server: true
+    allow-pw: true
+
+  # Update the system after installation
+  updates: security
+
+  # Final commands
+  late-commands:
+    - echo 'Installation completed successfully!' > /target/var/log/installer-success.log
