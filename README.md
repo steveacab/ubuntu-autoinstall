@@ -18,9 +18,9 @@ ________________________________________________________________________________
 
 Download the autoinstall.yaml file from the provided link and place it in the current directory.
 
-mkdir myiso
+`mkdir myiso`
 
-mv ubuntu-*.iso myiso/
+`mv ubuntu-*.iso myiso/`
 
 cd myiso/
 
