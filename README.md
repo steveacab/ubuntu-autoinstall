@@ -19,23 +19,23 @@ ________________________________________________________________________________
 Download the autoinstall.yaml file from the provided link and place it in the current directory.
 
 `mkdir myiso
-
-mv ubuntu-*.iso myiso/
-
-cd myiso/
-
-mkdir isomount
-
-sudo mount -o loop ubuntu-*.iso isomount
-
-rsync -a isomount/ extracted
-
-sudo cp autoinstall.yaml myiso/extracted/
-
-cd extracted
-
-sudo xorriso -as mkisofs -r -V "This is an Ubuntu semi-interactive installation iso" -o ../custom-ubuntu.iso -J -l -b boot/grub/i386-pc/eltorito.img -c boot.catalog -no-emul-boot -boot-load-size 4 -boot-info-table .`
-
+`
+`mv ubuntu-*.iso myiso/
+`
+`cd myiso/
+`
+`mkdir isomount
+`
+`sudo mount -o loop ubuntu-*.iso isomount
+`
+`rsync -a isomount/ extracted
+`
+`sudo cp autoinstall.yaml myiso/extracted/
+`
+`cd extracted
+`
+`sudo xorriso -as mkisofs -r -V "This is an Ubuntu semi-interactive installation iso" -o ../custom-ubuntu.iso -J -l -b boot/grub/i386-pc/eltorito.img -c boot.catalog -no-emul-boot -boot-load-size 4 -boot-info-table .
+`
 
 
 ![Screenshot 2025-04-18 195341](https://github.com/user-attachments/assets/6a12b2a6-d9cb-421d-8d67-96dbf4db79a4)
