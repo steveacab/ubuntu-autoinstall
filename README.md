@@ -28,6 +28,8 @@ Download the autoinstall.yaml file from the provided link and place it in the cu
 
 `sudo mount -o loop ubuntu-*.iso isomount`
 
+`mkdir extracted`
+
 `rsync -a isomount/ extracted`
 
 `sudo cp autoinstall.yaml myiso/extracted/`
